@@ -1,0 +1,119 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{ super() }}
+	<style>
+		body { background: #e8f1f9; }
+	</style>
+{% endblock %}
+
+
+{% block title %}
+KEIPS Result
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+
+      <h1 class="pt-5 pb-2">KEIPS Summary</h1>
+
+      <p><a href="{{ url_for('index') }}">Return to search page</a></p>
+
+      <table width="400">
+        <tr>
+          <tr>
+            <th>OSA Percentile</th>
+            <th>{{ data.OSA  }}</th>
+          </tr>
+          <tr>
+            <th style="width:50%">Room Draw Points</th>
+            <th>{{ data.Roomdraw  }}</th>
+          </tr>
+          <tr>
+            <th>Room Draw Ranking</th>
+            <th>{{ data.Roomdrawrank  }}</th>
+          </tr>
+          <tr>
+            <th>Contrasting</th>
+            <th>{{ data.Contrasting  }}</th>
+          </tr>
+          <tr>
+            <th>Semester stayed</th>
+            <th>{{ data.Semesterstay  }}</th>
+          </tr>
+          <tr>
+            <th>Fullfilled criteria?</th>
+            <th>{{ data.Fullfilled  }}</th>
+
+        </tr>
+      </table>
+	  
+    </div>
+    <div class="col-sm-6">
+      <h5 class="pt-5 pb-2">Top 4 CCA</h1>
+      <table width="400">
+        <tr>
+          <td>CCA</td>
+          <td>Cat</td>
+          <td>Atte</td>
+          <td>Perf</td>
+          <td>Outs</td>
+          <td>Total</td>
+        </tr>
+        {% for row in data.Top4cca %}
+          <tr>
+            <td>{{row[0]}}</td>
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+            <td>{{row[5]}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+      <h5 class="pt-5 pb-2">All CCA</h1>
+        <table width="400">
+          <tr>
+            <td>CCA</td>
+            <td>Cat</td>
+            <td>Atte</td>
+            <td>Perf</td>
+            <td>Outs</td>
+            <td>Total</td>
+          </tr>
+          {% for row in data.Allcca %}
+            <tr>
+              <td>{{row[0]}}</td>
+              <td>{{row[1]}}</td>
+              <td>{{row[2]}}</td>
+              <td>{{row[3]}}</td>
+              <td>{{row[4]}}</td>
+              <td>{{row[5]}}</td>
+            </tr>
+          {% endfor %}
+        </table>
+        <h5 class="pt-5 pb-2">Bonus</h1>
+          <tr>
+            <td>CCA</td>
+            <td>Description</td>
+            <td>Total</td>
+          </tr>
+          <table width="400">
+            {% for row in data.Bonus %}
+              <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+              </tr>
+            {% endfor %}
+          </table>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
